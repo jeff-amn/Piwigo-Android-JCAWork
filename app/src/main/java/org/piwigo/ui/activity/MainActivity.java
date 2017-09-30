@@ -18,6 +18,8 @@
 package org.piwigo.ui.activity;
 
 import android.accounts.Account;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,7 +40,7 @@ import java.net.URL;
 import org.json.JSONObject;
 // end jca imports
 
-import org.apache.commons.io.output.ByteArrayOutputStream;
+//import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.http.NameValuePair;
 import org.apache.http.params.HttpParams;
 import org.piwigo.R;
@@ -46,9 +48,15 @@ import org.piwigo.databinding.ActivityMainBinding;
 import org.piwigo.databinding.DrawerHeaderBinding;
 import org.piwigo.ui.Navigator;
 import org.piwigo.ui.fragment.AlbumsFragment;
+import org.piwigo.ui.fragment.ImagesFragment;
 import org.piwigo.ui.model.User;
 import org.piwigo.ui.view.MainView;
 import org.piwigo.ui.viewmodel.MainViewModel;
+
+import org.piwigo.ui.viewmodel.AlbumsViewModel;
+
+
+
 
 import java.util.ArrayList;
 
@@ -102,6 +110,21 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override public void onItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_albums:
+
+              //  FragmentManager fragmentManager = getFragmentManager();
+             //   FragmentTransaction fragmentTransaction = fragmentManager
+              //          .beginTransaction();
+
+              //  frag(R.id.content, new ImagesFragment());
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.content, new ImagesFragment())
+                        .commit();
+
+
+
+
                 break;
             case R.id.nav_upload:
                 // Create intent to Open Image applications like Gallery, Google Photos
@@ -161,6 +184,8 @@ public class MainActivity extends BaseActivity implements MainView {
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)
                     .show();
         }
+
+
 
     }
 

@@ -24,7 +24,7 @@ import org.piwigo.internal.di.scope.PerActivity;
 import org.piwigo.ui.activity.LoginActivity;
 import org.piwigo.ui.activity.MainActivity;
 import org.piwigo.ui.fragment.AlbumsFragment;
-import org.piwigo.ui.fragment.PhotosFragment;
+import org.piwigo.ui.fragment.ImagesFragment;
 
 import dagger.Component;
 
@@ -38,7 +38,7 @@ public interface ActivityComponent {
 
     void inject(AlbumsFragment fragment);
 
- //   void inject(PhotosFragment fragment);
+    void inject(ImagesFragment fragment);
 
     Activity activity();
 

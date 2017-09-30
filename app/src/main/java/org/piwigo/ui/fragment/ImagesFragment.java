@@ -1,6 +1,6 @@
 /*
- * Copyright 2016 Phil Bayfield https://philio.me
- * Copyright 2016 Piwigo Team http://piwigo.org
+ * Copyright 2017 Phil Bayfield https://philio.me
+ * Copyright 2017 Piwigo Team http://piwigo.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,11 @@
 
 package org.piwigo.ui.fragment;
 
+/**
+ * Created by Jeff on 9/26/2017.
+ */
+
+
 import android.content.res.Configuration;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -28,25 +33,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.piwigo.R;
-import org.piwigo.databinding.FragmentAlbumsBinding;
-import org.piwigo.ui.viewmodel.AlbumsViewModel;
+import org.piwigo.databinding.FragmentImagesBinding;
+import org.piwigo.ui.viewmodel.ImagesViewModel;
 
 import javax.inject.Inject;
 
-public class AlbumsFragment extends BaseFragment {
+public class ImagesFragment extends BaseFragment {
 
     private static final int PHONE_MIN_WIDTH = 320;
     private static final int TABLET_MIN_WIDTH = 360;
 
-    @Inject AlbumsViewModel viewModel;
+    @Inject ImagesViewModel viewModel;
 
-    FragmentAlbumsBinding binding;
+    FragmentImagesBinding binding;
 
 
 
     @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_albums, container, false);
-        binding.recycler.setLayoutManager(new GridLayoutManager(getContext(), calculateColumnCount()));
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_images, container, false);
+        binding.recycler2.setLayoutManager(new GridLayoutManager(getContext(), calculateColumnCount()));
         return binding.getRoot();
 
     }
@@ -56,7 +61,7 @@ public class AlbumsFragment extends BaseFragment {
         getActivityComponent().inject(this);
         bindLifecycleEvents(viewModel);
         binding.setViewModel(viewModel);
-        viewModel.loadAlbums(null);
+        viewModel.loadImages(null);
     }
 
     private int calculateColumnCount() {
@@ -70,8 +75,11 @@ public class AlbumsFragment extends BaseFragment {
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         //jca added
-            return true;
+        return true;
     }
+
+
+
 
 
 }

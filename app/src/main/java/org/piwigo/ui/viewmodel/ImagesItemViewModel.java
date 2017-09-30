@@ -1,6 +1,6 @@
 /*
- * Copyright 2016 Phil Bayfield https://philio.me
- * Copyright 2016 Piwigo Team http://piwigo.org
+ * Copyright 2017 Phil Bayfield https://philio.me
+ * Copyright 2017 Piwigo Team http://piwigo.org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@
 
 package org.piwigo.ui.viewmodel;
 
-import android.app.FragmentTransaction;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+/**
+ * Created by Jeff on 9/26/2017.
+ */
 
 import org.piwigo.io.model.ImageInfo;
 import org.piwigo.io.model.ImageListResponse;
@@ -31,19 +31,18 @@ import java.util.Observable;
 import rx.Subscriber;
 import rx.Subscription;
 
+public class ImagesItemViewModel extends BaseViewModel {
 
-
-public class AlbumItemViewModel extends BaseViewModel {
 
     private final String url;
     private final String title;
-    private final String photos;
 
 
-    public AlbumItemViewModel(String url, String title, String photos) {
+
+    public ImagesItemViewModel(String url, String title) {
         this.url = url;
         this.title = title;
-        this.photos = photos;
+
 
     }
 
@@ -55,26 +54,5 @@ public class AlbumItemViewModel extends BaseViewModel {
         return title;
     }
 
-    public String getPhotos() { return photos; }
-
-
-
-
-    public void onViewAlbumPhotos(){
-        String test = url;
-
-
-
-
-     //  FragmentManager fragmentManager = getFragmentManager();
-             // .beginTransaction();
-
-        //  ImageRepository images = new ImageRepository();
-
-      //  List<ImageListResponse> myimages = images.getAlbumImages(11);
-
-     //   getImages.
-
-    }
 
 }

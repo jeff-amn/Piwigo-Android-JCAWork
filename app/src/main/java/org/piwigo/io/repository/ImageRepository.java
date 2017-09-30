@@ -28,35 +28,17 @@ public class ImageRepository extends BaseRepository {
 
     @Inject public ImageRepository() {}
 
-  //  public Observable<List<ImageInfo>> getImages(Integer categoryId) {
- //       return restService
-  //              .getImages(categoryId)
-  //              .flatMapIterable(imageListResponse -> imageListResponse.result.images);
-              //  .compose(applySchedulers());
+    public Observable<List<ImageInfo>> getImages(Integer categoryId) {
+        return restService
+                .getImages(categoryId)
+                .map(imageListResponse -> imageListResponse.result.images)
+                .compose(applySchedulers());
 
 
-  //  }
-
-
+   }
 
 
 
-     //   public List<ImageListResponse> getAlbumImages(int imageid) {
-     //          return restService
-       //                         .getImages(imageid);
-     //                      //    .map(ImageListResponse -> ImageListResponse.result.images)
-                            //   .compose(applySchedulers());
-        //   }
-
-  //  public List<ImageInfo>  getAlbumImages(int catid) {
-
-      //  restService.getImages(catid).subscribe();
-
-
-      //  List<ImageInfo> blank = null;
-
-   //     return restService
-    //            .getImages(catid);
     }
 
 
