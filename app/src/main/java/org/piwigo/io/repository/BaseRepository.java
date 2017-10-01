@@ -40,5 +40,4 @@ public abstract class BaseRepository {
                 .observeOn(uiScheduler);
     }
 
-
 }

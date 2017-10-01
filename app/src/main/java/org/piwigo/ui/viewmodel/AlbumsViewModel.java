@@ -108,7 +108,7 @@ public class AlbumsViewModel extends BaseViewModel {
             {
                 imageurl = item.second.derivatives.large.url;
             }
-            AlbumItemViewModel viewModel = new AlbumItemViewModel(imageurl, item.first.name, photos);
+            AlbumItemViewModel viewModel = new AlbumItemViewModel(imageurl, item.first.name, photos, item.first.id);
             viewHolder.getBinding().setVariable(BR.viewModel, viewModel);
         }
 

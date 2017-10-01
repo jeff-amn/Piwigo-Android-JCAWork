@@ -36,12 +36,16 @@ import org.piwigo.R;
 import org.piwigo.databinding.FragmentImagesBinding;
 import org.piwigo.ui.viewmodel.ImagesViewModel;
 
+import org.piwigo.helper.CommonVars;
+
 import javax.inject.Inject;
 
 public class ImagesFragment extends BaseFragment {
 
     private static final int PHONE_MIN_WIDTH = 320;
     private static final int TABLET_MIN_WIDTH = 360;
+
+    CommonVars comvars = CommonVars.getInstance();
 
     @Inject ImagesViewModel viewModel;
 
@@ -61,7 +65,7 @@ public class ImagesFragment extends BaseFragment {
         getActivityComponent().inject(this);
         bindLifecycleEvents(viewModel);
         binding.setViewModel(viewModel);
-        viewModel.loadImages(null);
+        viewModel.loadImages(comvars.getValue());
     }
 
     private int calculateColumnCount() {

@@ -15,44 +15,47 @@
  * limitations under the License.
  */
 
-package org.piwigo.ui.viewmodel;
+package org.piwigo.helper;
 
 /**
- * Created by Jeff on 9/26/2017.
+ * Created by Jeff on 10/1/2017.
+ *
+ * https://stackoverflow.com/questions/1944656/android-global-variable
  */
 
-import org.piwigo.io.model.ImageInfo;
-import org.piwigo.io.model.ImageListResponse;
-import org.piwigo.io.repository.ImageRepository;
-
-import java.util.List;
-import java.util.Observable;
-
-import rx.Subscriber;
-import rx.Subscription;
-
-public class PhotosItemViewModel extends BaseViewModel {
 
 
-    private final String url;
-    private final String title;
+public class CommonVars {
+
+    private static CommonVars instance = new CommonVars();
 
 
+    // Getter-Setters
+    public static CommonVars getInstance() {
+        return instance;
+    }
 
-    public PhotosItemViewModel(String url, String title) {
-        this.url = url;
-        this.title = title;
+    public static void setInstance(CommonVars instance) {
+        CommonVars.instance = instance;
+    }
 
+    private int cat_selected;
+
+    private CommonVars() {
 
     }
 
-    public String getUrl() {
-        return url;
+
+    public int getValue() {
+        return cat_selected ;
     }
 
-    public String getTitle() {
-        return title;
+
+    public void setValue(int catid) {
+        this.cat_selected = catid;
     }
+
+
 
 
 }

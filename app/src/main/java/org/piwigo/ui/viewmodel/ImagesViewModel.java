@@ -46,7 +46,7 @@ public class ImagesViewModel extends BaseViewModel {
 
 
     public ObservableArrayList<ImageInfo> images = new ObservableArrayList<>();
-    public BindingRecyclerViewAdapter.ViewBinder<List<ImageInfo>> viewBinder = new ImagesViewBinder();
+    public BindingRecyclerViewAdapter.ViewBinder<ImageInfo> viewBinder = new ImagesViewBinder();
 
     @Inject ImageRepository imagesRepository;
     @Inject Resources resources;
@@ -64,9 +64,10 @@ public class ImagesViewModel extends BaseViewModel {
     }
 
     public void loadImages(Integer categoryId) {
-       // this.categoryId = categoryId;
-        this.categoryId = 14;
-        subscription = imagesRepository.getImages(14)
+
+        // *** HARD CODED A CATEGORY ID FOR TESTING *******
+        this.categoryId = categoryId;
+        subscription = imagesRepository.getImages(categoryId)
                 .subscribe(new ImagesSubscriber());
     }
 
@@ -93,9 +94,9 @@ public class ImagesViewModel extends BaseViewModel {
 
 
 
-    private class ImagesViewBinder implements BindingRecyclerViewAdapter.ViewBinder<List<ImageInfo>> {
+    private class ImagesViewBinder implements BindingRecyclerViewAdapter.ViewBinder<ImageInfo> {
 
-        @Override public int getViewType(List<ImageInfo> images) {
+        @Override public int getViewType(ImageInfo image) {
             return 0;
         }
 
@@ -103,7 +104,7 @@ public class ImagesViewModel extends BaseViewModel {
             return R.layout.item_images;
         }
 
-        @Override public void bind(BindingRecyclerViewAdapter.ViewHolder viewHolder, List<ImageInfo> images) {
+        @Override public void bind(BindingRecyclerViewAdapter.ViewHolder viewHolder, ImageInfo image) {
          //   String photos = resources.getQuantityString(R.plurals.album_photos, item.first.nbImages, item.first.nbImages);
          //   if (item.first.totalNbImages > item.first.nbImages) {
          //       int subPhotos = item.first.totalNbImages - item.first.nbImages;
@@ -119,6 +120,13 @@ public class ImagesViewModel extends BaseViewModel {
         //    }
         //    AlbumItemViewModel viewModel = new AlbumItemViewModel(imageurl, item.first.name, photos);
         //    viewHolder.getBinding().setVariable(BR.viewModel, viewModel);
+            String imageurl ="";
+            imageurl = image.elementUrl;
+
+            String imagename = image.name;
+
+            ImagesItemViewModel viewModel = new ImagesItemViewModel(imageurl, imagename);
+            viewHolder.getBinding().setVariable(BR.viewModel, viewModel);
         }
 
     }

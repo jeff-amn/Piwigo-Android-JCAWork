@@ -17,33 +17,33 @@
 
 package org.piwigo.ui.viewmodel;
 
-import android.app.FragmentTransaction;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 
-import org.piwigo.io.model.ImageInfo;
-import org.piwigo.io.model.ImageListResponse;
-import org.piwigo.io.repository.ImageRepository;
 
-import java.util.List;
-import java.util.Observable;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
-import rx.Subscriber;
-import rx.Subscription;
+import org.piwigo.helper.CommonVars;
 
+import javax.inject.Inject;
 
 
 public class AlbumItemViewModel extends BaseViewModel {
 
+
+    CommonVars comvars = CommonVars.getInstance();
+
+
     private final String url;
     private final String title;
     private final String photos;
+    private final int catid;
 
 
-    public AlbumItemViewModel(String url, String title, String photos) {
+    public AlbumItemViewModel(String url, String title, String photos, int id) {
         this.url = url;
         this.title = title;
         this.photos = photos;
+        this.catid = id;
 
     }
 
@@ -57,16 +57,20 @@ public class AlbumItemViewModel extends BaseViewModel {
 
     public String getPhotos() { return photos; }
 
+    public int getCatid() { return catid;}
+
 
 
 
     public void onViewAlbumPhotos(){
         String test = url;
 
+        comvars.setValue(catid);
 
 
 
-     //  FragmentManager fragmentManager = getFragmentManager();
+
+      // FragmentManager fragmentManager = getFragmentManager();
              // .beginTransaction();
 
         //  ImageRepository images = new ImageRepository();
